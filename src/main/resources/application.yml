@@ -1,0 +1,48 @@
+server:
+  port: 7777
+
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&autoReconnect=true&useSSL=false&serverTimezone=GMT%2b8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 阿里druid
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+  redis:
+    host: 192.168.182.130
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 30000
+
+mybatis:
+  #实体类所在包
+  type-aliases-package: com.lqm.springboot.pojo
+  #mapper.xml所在位置
+  mapper-locations: classpath*:/mapper/*.xml
+
+
+logging:
+  level:
+    com.lqm.springboot.dao: DEBUG
